@@ -2,162 +2,57 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Love Letter for Rija</title>
-
+<title>Us</title>
 <style>
-body{
-  margin:0;
-  overflow:hidden;
-  text-align:center;
-  font-family:'Segoe UI', cursive;
-  color:white;
 
-  background: linear-gradient(270deg,#ff758c,#ff7eb3);
-  background-size:400% 400%;
-  animation:bg 10s infinite;
-}
+/* SAME STYLE */
+body{margin:0;height:100vh;overflow:hidden;display:flex;justify-content:center;align-items:center;text-align:center;color:white;font-family:'Georgia','Segoe UI',serif;background: linear-gradient(270deg,#1a001f,#ff4d6d,#ff7eb3);background-size:400% 400%;animation:bg 15s infinite;}
+@keyframes bg{0%{background-position:0%}50%{background-position:100%}100%{background-position:0%}}
 
-@keyframes bg{
-  0%{background-position:0%}
-  50%{background-position:100%}
-  100%{background-position:0%}
-}
+.glow{position:fixed;width:100%;height:100%;background:radial-gradient(circle,rgba(255,255,255,0.15),transparent 60%);animation:pulse 4s infinite;}
+@keyframes pulse{0%,100%{opacity:0.4}50%{opacity:0.8}}
 
-/* Floating hearts layer */
-.hearts{
-  position:fixed;
-  width:100%;
-  height:100%;
-  top:0;
-  left:0;
-  overflow:hidden;
-  z-index:0;
-}
+.img{position:absolute;width:130px;border-radius:20px;box-shadow:0 0 25px rgba(255,255,255,0.5);animation:float 6s infinite;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
 
-.heart{
-  position:absolute;
-  bottom:-50px;
-  font-size:20px;
-  animation:floatUp linear infinite;
-  opacity:0.7;
-}
+.container{z-index:2;max-width:700px}
 
-@keyframes floatUp{
-  0%{
-    transform:translateY(0) scale(1);
-    opacity:0.7;
-  }
-  100%{
-    transform:translateY(-110vh) scale(1.5);
-    opacity:0;
-  }
-}
+button{margin-top:20px;padding:15px 30px;border:none;border-radius:30px;background:#ff4d6d;color:white}
 
-/* Content styling */
-.container{
-  margin-top:90px;
-  padding:20px;
-  position:relative;
-  z-index:1;
-}
+.fadeOut{opacity:0;transform:scale(1.05);transition:0.7s}
 
-h1{
-  text-shadow:0 0 15px rgba(255,255,255,0.7)
-}
-
-p{
-  max-width:700px;
-  margin:auto;
-  line-height:1.7
-}
-
-img{
-  width:230px;
-  border-radius:20px;
-  margin:10px;
-  box-shadow:0 0 15px rgba(255,255,255,0.4)
-}
-
-button{
-  padding:12px 30px;
-  border-radius:30px;
-  background:rgba(255,255,255,0.2);
-  color:white;
-  border:none;
-  cursor:pointer;
-  position:relative;
-  z-index:1;
-}
 </style>
 </head>
 
 <body>
 
-<!-- Hearts Background -->
-<div class="hearts"></div>
+<audio autoplay loop><source src="music.mp3"></audio>
 
-<audio id="bgMusic" loop>
-<source src="music.mp3" type="audio/mpeg">
-</audio>
+<div class="glow"></div>
 
-<button onclick="toggleMusic()" style="margin-top:20px;">
-  ▶ Play Music
-</button>
+<img src="img 3.jpg" class="img" style="top:10%;right:5%">
+<img src="img 4.jpg" class="img" style="bottom:10%;left:5%">
 
 <div class="container">
-<h1>My Beautiful Rija ❤️</h1>
+<h1>You & Me ❤️</h1>
 
 <p>
-You are the calm in my chaos, the warmth in my coldest moments, and the light that quietly fixes everything inside me.
+Every small moment with you… meant more than I ever said.
 
-There’s something about you that feels like home… something I never want to lose.
+Even the random conversations…  
+even the silence…
 
-I don’t just love you… I feel you in every heartbeat, in every thought, in every little moment.
-
-You are rare. You are magic. And you are mine… if you still choose me.
+it all felt right with you.
 </p>
 
-<img src="image3.jpg">
-<img src="image4.jpg">
-
-<br><br>
-<button onclick="location.href='page3.html'">One Last Thing 💖</button>
+<button onclick="goNext('page3.html')">Next</button>
 </div>
 
 <script>
-let isPlaying = false;
-
-function toggleMusic() {
-  const music = document.getElementById('bgMusic');
-  const btn = event.target;
-
-  if (!isPlaying) {
-    music.play();
-    isPlaying = true;
-    btn.innerHTML = '⏸ Pause Music';
-  } else {
-    music.pause();
-    isPlaying = false;
-    btn.innerHTML = '▶ Play Music';
-  }
+function goNext(page){
+document.body.classList.add("fadeOut");
+setTimeout(()=>{window.location.href=page},700);
 }
-
-/* Generate floating hearts */
-function createHeart(){
-  const heart = document.createElement("div");
-  heart.classList.add("heart");
-  heart.innerHTML = "❤️";
-
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (15 + Math.random() * 25) + "px";
-  heart.style.animationDuration = (5 + Math.random() * 5) + "s";
-
-  document.querySelector(".hearts").appendChild(heart);
-
-  setTimeout(()=>{ heart.remove(); },10000);
-}
-
-setInterval(createHeart, 300);
 </script>
 
 </body>
