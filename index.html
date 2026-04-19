@@ -13,9 +13,11 @@ body{margin:0;height:100vh;overflow:hidden;display:flex;justify-content:center;a
 
 .img{
 position:absolute;
-width:220px; /* increased size */
+width:220px;
+height:220px; /* added height */
 border-radius:20px;
 box-shadow:0 0 25px rgba(255,255,255,0.5);
+object-fit:cover; /* keeps image nice */
 animation:float 6s infinite;
 }
 
